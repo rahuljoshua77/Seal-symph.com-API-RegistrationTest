@@ -13,7 +13,7 @@ def sign_up(k):
     sess = requests.Session()
     password = "password123OK$$"
     additonal = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(5))
-    username = fake.first_name()+fake.last_name()+str(random_angka)
+    username = fake.first_name()+str(random_angka)
     username = username.lower()
     email = fake.first_name()+fake.last_name()+str(random_angka)+"@getnada.com"
     email = email.lower()
@@ -46,10 +46,10 @@ def sign_up(k):
         r = sess.get(f'https://2captcha.com/res.php?key=795244db2816e5e5d29a788c818bba10&action=get&id={get_id}')
         
         if r.text == "CAPCHA_NOT_READY":
-            print(f"[*] {email}: {r.text}")
+            print(f"[*] {username}: {r.text}")
         else:
             global token_captcha
-            print(f'[*] {email}: Solved Captcha')
+            print(f'[*] {username}: Solved Captcha')
             get_capt =  str(r.text)
             ress = get_capt.split("|")
             token_captcha = ress[1]
@@ -66,9 +66,9 @@ def sign_up(k):
         'g-recaptcha-response': token_captcha
     }
     check_resp = sess.post('https://seal-symph.com/member/register',json=datas,headers=headerz,allow_redirects=True)
-    print(f'[*] {email}: Success Registrated!')
+    print(f'[*] {username}: Success Registrated!')
     with open('success.txt','a') as f:
-        f.write('{0}|{1}\n'.format(email,password))
+        f.write('{0}|{1}\n'.format(username,password))
    
 if __name__ == '__main__':
  
