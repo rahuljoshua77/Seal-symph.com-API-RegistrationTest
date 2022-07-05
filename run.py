@@ -4,7 +4,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 from multiprocessing import Pool
 from time import sleep
 from faker import Faker
-fake = Faker() 
+fake = Faker(['id_ID']) 
   
 random_angka = random.randint(100,999)
 random_angka_dua = random.randint(10,99)
